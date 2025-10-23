@@ -135,8 +135,12 @@ a {
 .navbar .subscribe-btn button:hover {
   transform: translate(5px, 5px);
 }
-
+.navbar .hamburger input[type="checkbox"] {
+  position: absolute;
+  visibility: hidden;
+}
 .navbar .hamburger {
+  position: relative;
   display: none;
   background-color: var(--color-white);
   color: var(--color-black);
@@ -146,11 +150,12 @@ a {
   border-radius: 3px;
   cursor: pointer;
 }
-
+.navbar .hamburger i {
+  cursor: pointer;
+}
 /* Main Section CSS RULES */
 
 .main-section {
-  /* height: 5000px; */
   position: relative;
   padding-top: 180px;
   background-color: var(--color-yellow-200);
@@ -1118,22 +1123,23 @@ footer hr {
 
 /* overlay and menu */
 
-/* 
-
------------------------------
-
-to test the overlay and menu please uncomment the code below
-I have commented the code to avoid conflicts since could not find a better way to do it
----------------------------
-
-*/
-
-/* .navbar .navbar-container:hover .overlay {
+body:has(.navbar .hamburger input[type="checkbox"]:checked) .overlay {
   display: block;
 }
-.navbar .navbar-container:hover .mobile-menu {
+body:has(.navbar .hamburger input[type="checkbox"]:checked)
+  .navbar-container
+  .mobile-menu {
   transform: translateX(0);
-} */
+}
+
+body:has(.navbar .hamburger input[type="checkbox"]:not(:checked)) .overlay {
+  display: none;
+}
+body:has(.navbar .hamburger input[type="checkbox"]:not(:checked))
+  .navbar-container
+  .mobile-menu {
+  transform: translateX(100%);
+}
 
 .overlay {
   position: fixed;
@@ -1231,4 +1237,213 @@ I have commented the code to avoid conflicts since could not find a better way t
 
 .mobile-menu .mobile-subscribe-btn button:hover {
   transform: translateY(-5px);
+}
+
+/* Feature 01 => adding the target pesudo class to style the active link */
+
+body:has(#home:target) a[href="#home"] {
+  color: var(--color-orange-500);
+  border-bottom: 2px solid var(--color-orange-500);
+}
+
+body:has(#latest-articles:target) a[href="#latest-articles"] {
+  color: var(--color-orange-500);
+  border-bottom: 2px solid var(--color-orange-500);
+}
+
+body:has(#authors:target) a[href="#authors"] {
+  color: var(--color-orange-500);
+  border-bottom: 2px solid var(--color-orange-500);
+}
+
+body:has(#community:target) a[href="#community"] {
+  color: var(--color-orange-500);
+  border-bottom: 2px solid var(--color-orange-500);
+}
+
+/* Feature 02 => adding the dark mode */
+.dark-light-mode-container {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+.dark-light-mode-container input[type="checkbox"] {
+  position: absolute;
+  visibility: hidden;
+}
+
+.dark-light-mode-container i.fa-sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--text-2xl);
+  color: var(--color-yellow-400);
+  cursor: pointer;
+  display: none;
+}
+.dark-light-mode-container i.fa-moon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: var(--text-2xl);
+  color: var(--color-black);
+  cursor: pointer;
+}
+
+/* in case checked */
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .dark-light-mode-container
+  i.fa-sun {
+  display: block;
+}
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .dark-light-mode-container
+  i.fa-moon {
+  display: none;
+}
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .navbar-container {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .navbar-container
+  .nav
+  ul
+  li
+  a {
+  color: var(--color-white);
+}
+body:has(.dark-light-mode-container input[type="checkbox"]:checked) {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .main-section {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .navbar-container {
+  border-color: var(--color-orange-500);
+  border-width: 1px;
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .main-section {
+  border-color: var(--color-orange-500);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .latest-articles-section {
+  border-color: var(--color-orange-500);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .latest-articles-card {
+  border-color: var(--color-orange-500);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .trending-card {
+  border-color: var(--color-orange-500);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .categories-card {
+  border-color: var(--color-orange-500);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .authors-section {
+  border-color: var(--color-orange-500);
+}
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .authors-section
+  .authors-container-header {
+  color: var(--color-black);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked)
+  .rebellion-section {
+  border-color: var(--color-orange-500);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked) footer {
+  border: 2px solid var(--color-orange-500);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:checked) button {
+  background-color: var(--color-orange-500);
+  color: var(--color-white);
+}
+
+/* in case unchecked */
+
+body:has(.dark-light-mode-container input[type="checkbox"]:not(:checked)) {
+  background-color: var(--color-white);
+  color: var(--color-black);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:not(:checked))
+  .main-section {
+  background-color: var(--color-yellow-200);
+  color: var(--color-black);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:not(:checked))
+  .navbar-container {
+  border-color: var(--color-black);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:not(:checked))
+  .main-section {
+  border-color: var(--color-black);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:not(:checked))
+  .latest-articles-section {
+  border-color: var(--color-black);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:not(:checked))
+  .latest-articles-card {
+  border-color: var(--color-black);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:not(:checked))
+  .trending-card {
+  border-color: var(--color-black);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:not(:checked))
+  .categories-card {
+  border-color: var(--color-black);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:not(:checked))
+  .authors-section {
+  border-color: var(--color-black);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:not(:checked))
+  .authors-section
+  .authors-container-header {
+  color: var(--color-black);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:not(:checked))
+  .rebellion-section {
+  border-color: var(--color-black);
+}
+
+body:has(.dark-light-mode-container input[type="checkbox"]:not(:checked))
+  footer {
+  border: 2px solid var(--color-black);
 }
